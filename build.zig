@@ -16,9 +16,9 @@ pub fn build(b: *std.Build) void {
     lib.installHeadersDirectory(b.path("c/include/brotli"), "brotli", .{});
 
     switch (target.result.os.tag) {
-        .linux => lib.defineCMacro("OS_LINUX", "1"),
-        .freebsd => lib.defineCMacro("OS_FREEBSD", "1"),
-        .macos => lib.defineCMacro("OS_MACOSX", "1"),
+        .linux => lib.root_module.addCMacro("OS_LINUX", "1"),
+        .freebsd => lib.root_module.addCMacro("OS_FREEBSD", "1"),
+        .macos => lib.root_module.addCMacro("OS_MACOSX", "1"),
         else => {},
     }
 
